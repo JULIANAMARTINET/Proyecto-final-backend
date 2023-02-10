@@ -1,0 +1,59 @@
+<div class="d-flex flex-row justify-content-between">
+
+  <button
+    class="btn btn btn-primary"
+    onclick="location.href='/api/products'"
+  >Seguir comprando</button>
+  <h3>Carrito de compras</h3>
+  <button
+    class="btn btn btn-danger"
+    onclick="location.href='/api/cart/pay'"
+  >Pagar</button>
+</div>
+<div class="d-flex flex-column align-items-center">
+
+  <div class="d-flex flex-row justify-content-between">
+    {{#each cartProducts}}
+
+      <div class="">
+        <div class="card">
+          <div class="card-body">
+            <h4
+              class="card-title d-flex justify-content-between align-items-center"
+            >
+              {{this.title}}
+              <a href="/api/products/{{this._id}}"><i
+                  class="fas fa-edit"
+                ></i></a>
+            </h4>
+            <td><img width="100" src={{this.thumbnail}} alt="image" /></td>
+            <p>{{this.description}} </p>
+            <p>${{this.price}}</p>
+            <div class="d-flex">
+
+              <!-- DELETE REQUEST -->
+              <form
+                action="/api/cart/{{this._id}}?_method=DELETE"
+                method="POST"
+              >
+                <input type="hidden" name="_method" value="DELETE" />
+                <button
+                  type="submit"
+                  class="btn btn-danger btn-block btn-sm"
+                >Eliminar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    {{else}}
+      <div class="card mx-auto">
+        <div class="card-body">
+          {{!-- <h1>Hello {{user.name}}</h1> --}}
+          <p clsss="lead">Carrito de compras vacío.</p>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>

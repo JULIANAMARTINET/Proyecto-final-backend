@@ -1,0 +1,32 @@
+[
+   {
+      "title": "Mac m1 pro",
+      "description": "computadora portatil",
+      "code": "MCC122",
+      "thumbnail": "urlsssssss",
+      "price": 1000,
+      "stock": 20,
+      "timestamp": "28/10/2022 20:37:12",
+      "id": 1
+   },
+   {
+      "title": "Mac m2 pro",
+      "description": "computadora portatil",
+      "code": "MCC122",
+      "thumbnail": "urlsssssss",
+      "price": 1000,
+      "stock": 20,
+      "timestamp": "28/10/2022 20:52:12",
+      "id": 2
+   },
+   {
+      "title": "Mac m2 prooooooooooooooooo",
+      "description": "computadora portatil",
+      "code": "MCC122",
+      "thumbnail": "urlsssssss",
+      "price": 1000,
+      "stock": 20,
+      "timestamp": "28/10/2022 20:58:46",
+      "id": 3
+   }
+]

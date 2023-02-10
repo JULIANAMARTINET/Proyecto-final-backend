@@ -1,0 +1,70 @@
+<div class="d-flex flex-row justify-content-between">
+
+  <button
+    class="btn btn btn-primary"
+    onclick="location.href='/api/auth/inicio'"
+  >Volver al Inicio</button>
+  <h3>Lista de Productos</h3>
+  <button
+    class="btn btn btn-danger"
+    onclick="location.href='/api/cart/'"
+  >Carrito</button>
+</div>
+
+<div class="d-flex flex-column align-items-center">
+
+  <div class="d-flex flex-row justify-content-between">
+    {{#each product}}
+
+      <div class="">
+        <div class="card">
+          <div class="card-body">
+            <h4
+              class="card-title d-flex justify-content-between align-items-center"
+            >
+              {{this.title}}
+              <a href="/api/products/{{this._id}}"><i
+                  class="fas fa-edit"
+                ></i></a>
+            </h4>
+            <td><img width="100" src={{this.thumbnail}} alt="image" /></td>
+            <p>{{this.description}} </p>
+            <p>${{this.price}}</p>
+            <p>{{this.stock}}</p>
+            <div class="d-flex">
+              <form action="/api/cart/{{this._id}}" method="POST">
+                <button
+                  class="btn btn-primary btn-block btn-sm"
+                  type="submit"
+                >Agregar a Compras</button>
+              </form>
+              <!-- DELETE REQUEST -->
+              <form
+                action="/api/products/{{this._id}}?_method=DELETE"
+                method="POST"
+              >
+                <input type="hidden" name="_method" value="DELETE" />
+                <button
+                  type="submit"
+                  class="btn btn-danger btn-block btn-sm"
+                >Eliminar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    {{else}}
+      <div class="card mx-auto">
+        <div class="card-body">
+          {{!-- <h1>Hello {{user.name}}</h1> --}}
+          <p clsss="lead">No hay productos.</p>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  <div class="d-flex mt-4">
+    <button class="btn btn-success btn-block" onclick="location.href='/add'">
+    Crear Producto</button>
+  </div>
+</div>

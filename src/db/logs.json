@@ -1,0 +1,62 @@
+[
+   {
+      "timestamp": "28/10/2022 21:12:06",
+      "message": {
+         "_original": {
+            "title": "M",
+            "description": "computadora portatil",
+            "code": "MCC122",
+            "thumbnail": "urlsssssss",
+            "price": 1000,
+            "stock": 20,
+            "timestamp": "28/10/2022 21:12:06"
+         },
+         "details": [
+            {
+               "message": "\"title\" length must be at least 3 characters long",
+               "path": [
+                  "title"
+               ],
+               "type": "string.min",
+               "context": {
+                  "limit": 3,
+                  "value": "M",
+                  "label": "title",
+                  "key": "title"
+               }
+            }
+         ]
+      },
+      "id": 1
+   },
+   {
+      "timestamp": "18/11/2022 21:39:35",
+      "message": {
+         "_original": {
+            "title": "TV LED 65",
+            "description": "Tv",
+            "code": "MCC22",
+            "thumbnail": "urlsssssss",
+            "price": 6000,
+            "stock": 15,
+            "timestamp": "18/11/2022 21:39:35"
+         },
+         "details": [
+            {
+               "message": "\"description\" length must be at least 3 characters long",
+               "path": [
+                  "description"
+               ],
+               "type": "string.min",
+               "context": {
+                  "limit": 3,
+                  "value": "Tv",
+                  "label": "description",
+                  "key": "description"
+               }
+            }
+         ]
+      },
+      "id": 2
+   }
+]

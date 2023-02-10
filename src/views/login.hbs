@@ -1,0 +1,23 @@
+
+
+<div class="">
+    <div class="mt-10 w-1/4 bg-gray-800 py-10 px-10 rounded-box">
+        <div class="mb-5 text-center">
+            <h2 class="text-3xl mb-1">Inicia sesión!</h2>
+        </div>
+        <div id="mainLogin">
+            <div class="card text-bg-light mb-3" style="max-width: 30rem; border: 1px">
+                <div class="card-body">
+                     <div class = 'general-card column-centered-div'>
+                    <form action="/api/auth/login" method="post" id="loginForm" class = "column-centered-div">
+                        <input id="email" type="text"  name="email" placeholder="Ingrese su email" style="width: 20rem">
+                        <input id="password" type="password" name="password" placeholder="Ingrese su contraseña" style="width: 20rem">
+                        <button class="btn btn btn-primary mt-2" style="width: 10rem;" type="submit">Ingresar</button>
+                    </form>
+                     <button class='btn btn-primary mt-2 ' style="width: 10rem" onclick="location.href='/'"> Atras</button>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
