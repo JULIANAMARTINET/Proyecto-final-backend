@@ -5,7 +5,12 @@ const CartCollection = "carts";
 const CartSchema = new Schema(
   {
     timestamp: { type: String, required: true, max: 100 },
-    products: [{ type: Schema.Types.ObjectId, ref: "products" }],
+    products: [
+      {
+        product: { type: Schema.Types.ObjectId, ref: "products" },
+        quantity: Number
+      },
+    ]
   },
   {
     virtuals: true,

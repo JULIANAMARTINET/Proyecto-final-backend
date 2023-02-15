@@ -1,4 +1,4 @@
-import logger from '../loggers/loggers.js'
+import {Loggers} from '../loggers/loggers.js'
 import { createTransport } from 'nodemailer'
 import { config } from '../config/index.js';
 
@@ -24,7 +24,7 @@ const sendEmail = async (mailTo, subject, html) => {
         const info = await transporter.sendMail(mailOptions)
 
     } catch (error) {
-        logger.error('error from sendEmail: ' + error)
+        Loggers.logError('error from sendEmail: ' + error)
     }
 }
 

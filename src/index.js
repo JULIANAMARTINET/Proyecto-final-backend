@@ -13,6 +13,9 @@ import passport from "passport";
 import cookieParser from "cookie-parser";
 import handlebars from "express-handlebars";
 import __dirname from "./dirname.js";
+import { Server as HttpServer } from 'http'
+import {Server as IOServer} from 'socket.io'
+import { startSockets } from './sockets/index.js'
 
 const app = express();
 
@@ -28,11 +31,12 @@ app.engine(
   })
 );
 
+
+
 app.set("view engine", "hbs");
 app.set("views", __dirname + "/views");
 
 PassportAuth.init();
-
 app.use(cookieParser());
 
 app.use(methodOverride("_method"));
@@ -47,8 +51,11 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// esto es para poder habilitar cors para un cliente externo, ejemplo cuando levantamos la app de react
-// bien podriamos convertirlo a un middleware en su archivo correspondiente y tener las propiedades que deseemos
+// socket
+const httpServer = new HttpServer(app)
+const io = new IOServer(httpServer)
+startSockets(io)
+
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 app.use(express.json());

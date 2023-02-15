@@ -10,7 +10,7 @@ export class CartsMongo extends MongoDBContainer {
   }
 
   async getById(id) {
-    const response = await this.model.findById(id).populate("products");
+    const response = await this.model.findById(id).populate("products.product");
 
     return response;
   }

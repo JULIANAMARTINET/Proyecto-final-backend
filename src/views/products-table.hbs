@@ -1,4 +1,4 @@
-<div class="d-flex flex-row justify-content-between">
+<div class="d-flex flex-row justify-content-between w-100 px-5">
 
   <button
     class="btn btn btn-primary"
@@ -13,24 +13,27 @@
 
 <div class="d-flex flex-column align-items-center">
 
-  <div class="d-flex flex-row justify-content-between">
+  <div class="d-flex flex-row flex-wrap justify-content-center m-2">
     {{#each product}}
-
-      <div class="">
-        <div class="card">
+        <div class="card product m-2">
           <div class="card-body">
             <h4
-              class="card-title d-flex justify-content-between align-items-center"
+              class="card-title text-center border-bottom fs-3"
             >
+          
               {{this.title}}
               <a href="/api/products/{{this._id}}"><i
                   class="fas fa-edit"
                 ></i></a>
             </h4>
-            <td><img width="100" src={{this.thumbnail}} alt="image" /></td>
+              <div class="d-flex justify-content-between px-4">
+            <td><img width="100" src={{this.thumbnail}} alt="image" class="rounded-3" /></td>
+            <div>
             <p>{{this.description}} </p>
             <p>${{this.price}}</p>
-            <p>{{this.stock}}</p>
+            <p>stock: {{this.stock}}</p>
+            </div>
+            </div>
             <div class="d-flex">
               <form action="/api/cart/{{this._id}}" method="POST">
                 <button
@@ -52,7 +55,7 @@
             </div>
           </div>
         </div>
-      </div>
+  
 
     {{else}}
       <div class="card mx-auto">

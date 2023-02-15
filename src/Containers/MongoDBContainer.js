@@ -20,7 +20,7 @@ class MongoDBContainer {
 
     return response;
   }
-  // { name: "alan" email: "alan@mail.com" }
+
   async getOne(options) {
     const response = await this.model.findOne(options).lean().exec();
     return response;

@@ -1,5 +1,5 @@
 import { UserDao, CartDao } from "../../Dao/index.js";
-import logger from "../../loggers/loggers.js";
+import {Loggers} from "../../loggers/loggers.js";
 import {
   JWT_UTILS,
   DATE_UTILS,
@@ -77,7 +77,8 @@ const signUp = async (req, res) => {
 
     return res.redirect("login");
   } catch (error) {
-    console.log("error");
+    res.render("/api/auth/signup-error");
+    Loggers.logError(`error from signUp`);
     res.send({ success: false });
   }
 };
@@ -93,16 +94,22 @@ const logInView = async (req, res) => {
 };
 
 const logIn = async (req, res) => {
-  const { user } = req;
-  const email = user.email;
-  const token = JWT_UTILS.createToken(user, "secret");
-  res.cookie("tokenCookie", token, { maxAge: 1000 * 60 * 60 });
+  try {
+    const { user } = req;
+    const email = user.email;
+    const token = JWT_UTILS.createToken(user, "secret");
+    res.cookie("tokenCookie", token, { maxAge: 1000 * 60 * 60 });
 
-  res.render("inicio", { email });
+    res.render("inicio", { email });
+  } catch (error) {
+    res.render("/api/auth/login-error");
+    Loggers.logError(`error from middlewares/passportAuth - LocalStrategy`, error);
+    done(error);
+  }
 };
 
 const logInErr = async (req, res) => {
-  logger.error("Credenciales incorrectas");
+  Loggers.logError("Credenciales incorrectas");
   res.render("err-login.hbs");
 };
 

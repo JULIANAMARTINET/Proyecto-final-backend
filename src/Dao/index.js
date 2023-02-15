@@ -7,6 +7,7 @@ import {
   ProductsMemory,
 } from "./Products/index.js";
 import { UsersMongo } from "./Users/index.js";
+import { MessagesMongo } from "./Messages/index.js";
 
 const getSelectedDaos = () => {
   switch (config.SERVER.SELECTED_DATABASE) {
@@ -16,20 +17,19 @@ const getSelectedDaos = () => {
         ProductDao: new ProductsMongo(),
         CartDao: new CartsMongo(),
         UserDao: new UsersMongo(),
+        MessageDao: new MessagesMongo(),
       };
     }
     case "filesystem": {
       return {
         ProductDao: new ProductsFilesystem(),
         CartDao: new CartsFilesystem(),
-        UserDao: new UsersMongo(),
       };
     }
     case "memory": {
       return {
         ProductDao: new ProductsMemory(),
         CartDao: new CartsMemory(),
-        UserDao: new UsersMongo(),
       };
     }
   }
