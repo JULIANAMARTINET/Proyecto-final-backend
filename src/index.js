@@ -73,6 +73,6 @@ app.use("/api/auth", AuthRouter);
 app.use("/api/products", ProductRouter);
 app.use("/api/cart", CartRouter);
 
-const server = app.listen(config.SERVER.PORT, () =>
+const server = httpServer.listen(config.SERVER.PORT, () =>
   console.log(`Server running on port ${server.address().port}`)
 );

@@ -35,6 +35,6 @@ const getSelectedDaos = () => {
   }
 };
 
-const { ProductDao, CartDao, UserDao } = getSelectedDaos();
+const { ProductDao, CartDao, UserDao, MessageDao } = getSelectedDaos();
 
-export { ProductDao, CartDao, UserDao };
+export { ProductDao, CartDao, UserDao, MessageDao };

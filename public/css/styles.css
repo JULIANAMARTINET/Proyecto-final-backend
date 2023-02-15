@@ -1,255 +1,275 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
-*{
-    font-family: 'Poppins', sans-serif;
-    scroll-behavior: smooth;
+* {
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
 }
 
 body {
-    background-color: #83abba;
-    color: #3b3b3b;
-  }
+  background-color: #83abba;
+  color: #3b3b3b;
+}
 
 h1 {
-    text-align: center;
+  text-align: center;
 }
 
 h3 {
-    text-align: center;
+  text-align: center;
 }
 
-input {
-    margin: 12px;
-    width: 200px;
-    height: 50px;
-    text-align: center;
+input[type="text"]::placeholder {
+  text-align: center;
 }
 
-input[type = 'text']::placeholder {
-    text-align: center;
-}
-p{
-    margin-bottom: 0;
+p {
+  margin-bottom: 0;
 }
 
 button {
-    margin: 20px;
+  margin: 20px;
 }
 
 a {
-    color: white;
+  color: white;
 }
 
 img {
-    height: 70px;
-    width: 70px;
+  height: 70px;
+  width: 70px;
 }
 
 table {
-    width: 400px;
-    background-color: red;
-    margin: 20px;
-    border-radius: 25px;
+  width: 400px;
+  background-color: red;
+  margin: 20px;
+  border-radius: 25px;
 }
 
 th {
-    text-align: center;
-    background-color: blue;
-    color: white;
+  text-align: center;
+  background-color: blue;
+  color: white;
 }
 
 tr {
-    text-align: center;
+  text-align: center;
 }
 
 /* Classes */
 
 .column-centered-div {
-    margin-top: 8rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  margin-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .error-card {
-    background: rgb(131,58,180);
-    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
-    margin: 20px;
-    border-radius: 25px;
-    padding: 20px;
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  margin: 20px;
+  border-radius: 25px;
+  padding: 20px;
 }
 
 .error-image {
-    width: 300px;
-    height: 300px;
+  width: 300px;
+  height: 300px;
 }
 
 .form-table-div {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .general-card {
-    background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-    border-radius: 25px;
-    padding: 20px;
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  border-radius: 25px;
+  padding: 20px;
 }
 
 .green {
-    color: green
+  color: green;
 }
 
 .header {
-    width: 100%;
-    background-color:  #2f4173;
-    border-bottom: #3b3b3b;
-    border: solid;
-    position: absolute;
-    top: 0
+  width: 100%;
+  background-color: #2f4173;
+  border-bottom: #3b3b3b;
+  border: solid;
+  position: absolute;
+  top: 0;
 }
 
 .messages-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
-    border-radius: 25px;
-    margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  margin: 5px;
+  padding-top: 10px;
 }
 
 .row-centered-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .white {
-    color: white;
+  color: white;
 }
-.product{
-    background-color: #cbcecf;
+
+.product {
+  background-color: #cbcecf;
 }
-.carrito{
-    width: 32rem;
-    height: 8rem;
+
+.carrito {
+  width: 32rem;
+  height: 8rem;
 }
+
+.content-div {
+  width: 300px;
+}
+
+
 /* Id's */
+
+#card-body{
+    background-color:#83abba;
+}
 #chat-div {
-    background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
-    min-height: 40px;
-    margin: 10px;
-    border-radius: 25px;
-    padding: 10px;
+  background: linear-gradient(90deg, #e1e3e7 0%, #7c8391 100%);
+  min-height: 40px;
+  margin: 10px;
+  border-radius: 25px;
+  padding: 10px;
 }
 
 #fake-product-image {
-    height: 50;
-    width: 50;
+  height: 50;
+  width: 50;
 }
 
 #header-div__middle {
-    grid-area: middle;
-    background-color: reblackd;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  grid-area: middle;
+  background-color: reblackd;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #header-div__right {
-    grid-area: right;
-    background-color: black;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    padding-right: 30px;
+  grid-area: right;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-right: 30px;
 }
 
 #home-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    padding-top: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  padding-top: 5px;
 }
 
 #compression-title {
-    text-align: center;
-    margin: 7px;
+  text-align: center;
+  margin: 7px;
 }
 
 #insert-product-div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: lightgreen;
-    margin: 20px;
-    padding: 10px;
-    border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: lightgreen;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 25px;
 }
 
 #main-div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: beige;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: beige;
 }
 
 #message-input-div {
-    background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
 }
 
 #messages-div {
-    background-color: lightgreen;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 25px;
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 25px;
+}
+
+#message-details-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5px;
 }
 
 #online-chat-div {
-    background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
 }
 
 #products-table-div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: lightgreen;
-    border-radius: 25px;
-    margin: 10px;
-    padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: lightgreen;
+  border-radius: 25px;
+  margin: 10px;
+  padding-top: 10px;
 }
 
 #secondary-div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: black;
-    margin: 20px;
-    padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  margin: 20px;
+  padding: 10px;
 }
 
 #unauthorized-jumbofont {
-    font-size: 100px;
-    color: white;
+  font-size: 100px;
+  color: white;
 }
 
 #user-greeting-header {
-    background-color: black;
-    border-style: solid;
-    border-color: white;
-    border-width: 5px 0px 5px 0px;
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
-    grid-template-rows: 100%;
-    grid-template-areas: '. middle right';
+  background-color: black;
+  border-style: solid;
+  border-color: white;
+  border-width: 5px 0px 5px 0px;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 100%;
+  grid-template-areas: ". middle right";
 }

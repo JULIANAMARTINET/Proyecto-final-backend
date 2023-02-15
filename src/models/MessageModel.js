@@ -1,11 +1,17 @@
 import { Schema } from "mongoose";
 
-const MessageCollection = "mesagges";
+const MessageCollection = "messages";
+
+// const MessageSchema = new Schema({
+//     author: {type: Object, require: true},
+//     text: {type: String, require: true},
+//     date: {type: Date, require: true}
+// })
 
 const MessageSchema = new Schema({
-    author: {type: Object, require: true},
-    text: {type: String, require: true},
-    date: {type: Date, require: true}
+  messagesDataId: {type: Number, require: true},
+  entities: {type: Object, require: true},
+  result: {type: Array, require: true}
 })
 
 MessageSchema.set("toJSON", {

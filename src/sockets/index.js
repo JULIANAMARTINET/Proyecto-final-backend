@@ -1,5 +1,4 @@
 import { MessageController } from '../controllers/index.js'
-// import { products } from '../data/archiveData/index.js'
 import { Loggers } from '../loggers/loggers.js'
 
 const startSockets = (io) => {
@@ -21,11 +20,6 @@ const startSockets = (io) => {
             }
         })
     
-        // Operation when a product is added
-        client.on('add-product', (product) => {
-            products.push(product)
-            io.sockets.emit('products', product)
-        })
     })
 }
 

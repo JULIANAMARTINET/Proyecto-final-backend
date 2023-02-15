@@ -11,6 +11,7 @@ class MongoDBContainer {
   }
 
   async save(element) {
+    console.log("elemento", element)
     const response = await this.model.create(element);
     return response;
   }
@@ -37,6 +38,8 @@ class MongoDBContainer {
     const response = await this.model.findByIdAndDelete(id);
     return response;
   }
+  
+
 }
 
 export { MongoDBContainer };
