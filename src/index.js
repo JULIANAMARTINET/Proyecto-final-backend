@@ -16,8 +16,7 @@ import __dirname from "./dirname.js";
 import { Server as HttpServer } from 'http'
 import {Server as IOServer} from 'socket.io'
 import { startSockets } from './sockets/index.js'
-
-const app = express();
+export const app = express()
 
 app.engine(
   "hbs",

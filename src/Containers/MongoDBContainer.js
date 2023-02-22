@@ -38,8 +38,6 @@ class MongoDBContainer {
     const response = await this.model.findByIdAndDelete(id);
     return response;
   }
-  
-
 }
 
 export { MongoDBContainer };

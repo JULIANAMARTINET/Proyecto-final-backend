@@ -58,6 +58,7 @@ const createProduct = async (req, res) => {
 
     const createdProduct = await ProductDao.save(product);
     console.log("newproduct", createdProduct);
+    res.send(createdProduct.id)
     res.redirect("/api/products");
   } catch (error) {
     // no seria recomendable guardar logs de errores de input de usuario, que genera joi
