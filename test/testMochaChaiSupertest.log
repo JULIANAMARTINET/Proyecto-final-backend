@@ -1,0 +1,16 @@
+{"level":"info","message":{"duration":25,"state":"failed","title":"Deberia obtener todos los productos"},"timestamp":"2023-02-21 22:34:37"}
+{"level":"info","message":{"duration":72,"state":"failed","title":"Deberia Crear un producto"},"timestamp":"2023-02-21 22:34:37"}
+{"level":"info","message":{"duration":8,"state":"passed","title":"Deberia obtener por id un  producto"},"timestamp":"2023-02-21 22:34:37"}
+{"level":"info","message":{"duration":3,"state":"passed","title":"Deberia Eliminar un producto"},"timestamp":"2023-02-21 22:34:37"}
+{"level":"info","message":{"duration":2002,"state":"failed","title":"Deberia obtener todos los productos"},"timestamp":"2023-02-21 22:35:56"}
+{"level":"info","message":{"duration":42,"state":"failed","title":"Deberia Crear un producto"},"timestamp":"2023-02-21 22:35:56"}
+{"level":"info","message":{"duration":7,"state":"passed","title":"Deberia obtener por id un  producto"},"timestamp":"2023-02-21 22:35:56"}
+{"level":"info","message":{"duration":3,"state":"passed","title":"Deberia Eliminar un producto"},"timestamp":"2023-02-21 22:35:56"}
+{"level":"info","message":{"duration":704,"state":"failed","title":"Deberia obtener todos los productos"},"timestamp":"2023-02-21 22:38:24"}
+{"level":"info","message":{"duration":53,"state":"failed","title":"Deberia Crear un producto"},"timestamp":"2023-02-21 22:38:24"}
+{"level":"info","message":{"duration":7,"state":"passed","title":"Deberia obtener por id un  producto"},"timestamp":"2023-02-21 22:38:24"}
+{"level":"info","message":{"duration":3,"state":"passed","title":"Deberia Eliminar un producto"},"timestamp":"2023-02-21 22:38:24"}
+{"level":"info","message":{"duration":1731,"state":"failed","title":"Deberia obtener todos los productos"},"timestamp":"2023-02-22 16:10:12"}
+{"level":"info","message":{"duration":44,"state":"failed","title":"Deberia Crear un producto"},"timestamp":"2023-02-22 16:10:12"}
+{"level":"info","message":{"duration":7,"state":"passed","title":"Deberia obtener por id un  producto"},"timestamp":"2023-02-22 16:10:12"}
+{"level":"info","message":{"duration":3,"state":"passed","title":"Deberia Eliminar un producto"},"timestamp":"2023-02-22 16:10:12"}
