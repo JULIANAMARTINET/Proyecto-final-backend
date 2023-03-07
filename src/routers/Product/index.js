@@ -7,7 +7,7 @@ const router = Router();
 
 // /api/products
 
-router.get("/",isValidAuthToken, ProductController.getAll);
+router.get("/", isValidAuthToken, ProductController.getAll);
 
 router.get("/:id", ProductController.getById);
 

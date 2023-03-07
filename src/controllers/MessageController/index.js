@@ -3,11 +3,14 @@ import {
   denormalizeMessages,
 } from "../../utils/normalize.js";
 import { Loggers } from "../../loggers/loggers.js";
-import { MessageDao } from "../../Dao/index.js";
+import { daoFactory } from "../../Dao/index.js";
+
+
+const messageDao = daoFactory.getSelectedDao("message");
 
 const addMessage = async (message) => {
   console.log("mensaje", message);
-  const daoCall = await MessageDao.getAll();
+  const daoCall = await messageDao.getAll();
   const response = daoCall[0];
   if (response) {
     const relevantData = {
@@ -25,7 +28,7 @@ const addMessage = async (message) => {
       ...normalizedData,
     };
 
-    const updateResponse = await MessageDao.updateById(
+    const updateResponse = await messageDao.updateById(
       response.id,
       objectToStore
     );
@@ -39,7 +42,7 @@ const addMessage = async (message) => {
       ...normalizedData,
     };
   
-    const saveResponse = await MessageDao.save(objectToStore);
+    const saveResponse = await messageDao.save(objectToStore);
 
     Loggers.logDebug("--- message save Response ---");
     Loggers.logDebug(saveResponse);
@@ -49,7 +52,8 @@ const addMessage = async (message) => {
 };
 
 const getMessages = async () => {
-  const daoCall = await MessageDao.getAll();
+
+  const daoCall = await messageDao.getAll();
   const response = daoCall[0];
 
   if (!response) {

@@ -1,5 +1,8 @@
-import { UserDao } from "../Dao/index.js";
+import { daoFactory} from "../Dao/index.js";
 import { JWT_UTILS } from "../utils/index.js";
+
+
+const userDao = daoFactory.getSelectedDao("users");
 
 const isValidAuthToken = async (req, res, next) => {
   try {
@@ -15,7 +18,7 @@ const isValidAuthToken = async (req, res, next) => {
       throw new Error("Unauthorized");
     }
 
-    const user = await UserDao.getById(verifiedToken.id);
+    const user = await userDao.getById(verifiedToken.id);
 
     if (!user) {
       console.log("aqui?")

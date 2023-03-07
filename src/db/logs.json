@@ -58,5 +58,86 @@
          ]
       },
       "id": 2
+   },
+   {
+      "timestamp": "21/2/2023 22:34:37",
+      "message": {
+         "_original": {
+            "title": "Prueba",
+            "code": "22222",
+            "thumbnail": "https://detallesorballo.com/wp-content/uploads/2020/09/imagen-de-prueba-320x240-1.jpg",
+            "price": 2222,
+            "stock": 22222,
+            "timestamp": "21/2/2023 22:34:37"
+         },
+         "details": [
+            {
+               "message": "\"description\" is required",
+               "path": [
+                  "description"
+               ],
+               "type": "any.required",
+               "context": {
+                  "label": "description",
+                  "key": "description"
+               }
+            }
+         ]
+      },
+      "id": 3
+   },
+   {
+      "timestamp": "21/2/2023 22:35:56",
+      "message": {
+         "_original": {
+            "title": "Prueba",
+            "code": "22222",
+            "thumbnail": "https://detallesorballo.com/wp-content/uploads/2020/09/imagen-de-prueba-320x240-1.jpg",
+            "price": 2222,
+            "stock": 22222,
+            "timestamp": "21/2/2023 22:35:56"
+         },
+         "details": [
+            {
+               "message": "\"description\" is required",
+               "path": [
+                  "description"
+               ],
+               "type": "any.required",
+               "context": {
+                  "label": "description",
+                  "key": "description"
+               }
+            }
+         ]
+      },
+      "id": 4
+   },
+   {
+      "timestamp": "21/2/2023 22:38:24",
+      "message": {
+         "_original": {
+            "title": "Prueba",
+            "code": "22222",
+            "thumbnail": "https://detallesorballo.com/wp-content/uploads/2020/09/imagen-de-prueba-320x240-1.jpg",
+            "price": 2222,
+            "stock": 22222,
+            "timestamp": "21/2/2023 22:38:24"
+         },
+         "details": [
+            {
+               "message": "\"description\" is required",
+               "path": [
+                  "description"
+               ],
+               "type": "any.required",
+               "context": {
+                  "label": "description",
+                  "key": "description"
+               }
+            }
+         ]
+      },
+      "id": 5
    }
 ]

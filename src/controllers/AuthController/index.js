@@ -1,4 +1,4 @@
-import { UserDao, CartDao } from "../../Dao/index.js";
+import { daoFactory } from "../../Dao/index.js";
 import {Loggers} from "../../loggers/loggers.js";
 import {
   JWT_UTILS,
@@ -6,6 +6,10 @@ import {
   EMAIL_UTILS,
   BCRYPT_VALIDATION,
 } from "../../utils/index.js";
+
+
+const userDao = daoFactory.getSelectedDao("users");
+const cartDao = daoFactory.getSelectedDao("cart");
 
 // HOME
 const home = async (req, res) => {
@@ -33,13 +37,13 @@ const signUp = async (req, res) => {
       return res.send({ success: false });
     }
 
-    const existUser = await UserDao.getOne({ email });
+    const existUser = await userDao.getOne({ email });
 
     if (existUser && existUser.password) {
       return res.redirect("/api/auth/signup-error");
     }
     if (existUser && !existUser.password) {
-      const updateUser = await UserDao.updateById(existUser._id, {
+      const updateUser = await userDao.updateById(existUser._id, {
         ...existUser,
         password,
       });
@@ -47,9 +51,9 @@ const signUp = async (req, res) => {
       return res.redirect("login");
     }
     const UserCart = { timestamp: DATE_UTILS.getTimestamp(), products: [] };
-    const cart = await CartDao.save(UserCart);
+    const cart = await cartDao.save(UserCart);
 
-    await UserDao.save({
+    await userDao.save({
       name,
       lastname,
       age,

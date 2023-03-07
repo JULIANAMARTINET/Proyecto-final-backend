@@ -5,14 +5,17 @@ class MongoDBContainer {
     this.model = mongoose.model(name, schema);
   }
 
+
   async getAll() {
     const response = await this.model.find();
+    console.log("response", response)
     return response;
   }
 
   async save(element) {
     console.log("elemento", element)
     const response = await this.model.create(element);
+    console.log(response,"response")
     return response;
   }
 
@@ -38,8 +41,6 @@ class MongoDBContainer {
     const response = await this.model.findByIdAndDelete(id);
     return response;
   }
-  
-
 }
 
 export { MongoDBContainer };

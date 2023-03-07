@@ -30,9 +30,11 @@
     "passport-github2": "^0.1.12",
     "passport-local": "^1.0.0",
     "pino": "^8.9.0",
-    "socket.io": "^4.6.0"
+    "socket.io": "^4.6.0",
+    "winston": "^3.8.2"
   },
   "devDependencies": {
+    "chai": "^4.3.7",
     "handlebars": "^4.5.0"
   }
 }

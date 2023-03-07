@@ -16,8 +16,11 @@ import __dirname from "./dirname.js";
 import { Server as HttpServer } from 'http'
 import {Server as IOServer} from 'socket.io'
 import { startSockets } from './sockets/index.js'
+import { MongoDBService } from "./services/index.js";
 
-const app = express();
+export const app = express()
+
+MongoDBService.init();
 
 app.engine(
   "hbs",
@@ -32,14 +35,13 @@ app.engine(
 );
 
 
-
 app.set("view engine", "hbs");
 app.set("views", __dirname + "/views");
 
 PassportAuth.init();
 app.use(cookieParser());
 
-app.use(methodOverride("_method"));
+// app.use(methodOverride("_method"));
 app.use(
   session({
     secret: "secret",
@@ -62,6 +64,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+// router 
 app.get('/', (req, res) => {
   res.render('home')
 })

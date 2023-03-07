@@ -2,7 +2,10 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { Strategy as GithubStrategy } from "passport-github2";
 import { BCRYPT_VALIDATION, } from "../utils/index.js";
-import { UserDao } from "../Dao/index.js";
+import { daoFactory } from "../Dao/index.js";
+
+
+const userDao = daoFactory.getSelectedDao("users");
 
 const init = () => {
   passport.serializeUser((user, done) => {
@@ -10,7 +13,7 @@ const init = () => {
   });
 
   passport.deserializeUser(async (id, done) => {
-    const user = await UserDao.getById(id);
+    const user = await userDao.getById(id);
     done(null, user);
   });
 
@@ -26,7 +29,7 @@ const init = () => {
         try {
           if (!email || !password) return done(null, false);
 
-          const user = await UserDao.getOne({ email: email });
+          const user = await userDao.getOne({ email: email });
     
           if (!user) {
             logger.warn(`user not valid user`);

@@ -1,4 +1,4 @@
-import { ProductDao } from "../../Dao/index.js";
+import { daoFactory } from "../../Dao/index.js";
 import {Loggers} from '../../loggers/loggers.js'
 import {
   DATE_UTILS,
@@ -7,10 +7,12 @@ import {
   LOGGER_UTILS,
 } from "../../utils/index.js";
 
+
+const productDao = daoFactory.getSelectedDao("product");
 // /api/products
 const getAll = async (req, res) => {
   try {
-    const product = await ProductDao.getAll();
+    const product = await productDao.getAll();
 
     if (!product) {
       return res.send({ error: ERRORS_UTILS.MESSAGES.NO_PRODUCT });
@@ -27,7 +29,7 @@ const getAll = async (req, res) => {
 const getById = async (req, res) => {
   try{
   const { id } = req.params;
-  const product = await ProductDao.getById(id);
+  const product = await productDao.getById(id);
 
   res.send(product)
 } catch (error) {
@@ -53,11 +55,12 @@ const createProduct = async (req, res) => {
       thumbnail,
       price,
       stock,
-      timestamp: DATE_UTILS.getTimestamp(),
+     timestamp: DATE_UTILS.getTimestamp(), 
     });
 
-    const createdProduct = await ProductDao.save(product);
+    const createdProduct = await productDao.save(product);
     console.log("newproduct", createdProduct);
+    res.send(createdProduct.id)
     res.redirect("/api/products");
   } catch (error) {
     // no seria recomendable guardar logs de errores de input de usuario, que genera joi
@@ -71,7 +74,7 @@ const deleteById = async (req, res) => {
   try {
     const { id } = req.params;
     console.log("id", id);
-    await ProductDao.deleteById(id);
+    await productDao.deleteById(id);
 
     res.redirect("/api/products");
   } catch (error) {

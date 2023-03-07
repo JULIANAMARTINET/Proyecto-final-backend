@@ -1,4 +1,4 @@
-import { CartDao, ProductDao } from "../../Dao/index.js";
+import { daoFactory } from "../../Dao/index.js";
 import { config } from "../../config/index.js";
 import {Loggers} from '../../loggers/loggers.js'
 import {
@@ -7,11 +7,14 @@ import {
   EMAIL_UTILS,
 } from "../../utils/index.js";
 
+
+const cartDao = daoFactory.getSelectedDao("cart");
+const productDao = daoFactory.getSelectedDao("product");
 // /api/carts
 const CreateCart = async (req, res) => {
   try{
   const baseCart = { timestamp: DATE_UTILS.getTimestamp(), products: [] };
-  const cart = await CartDao.save(baseCart);
+  const cart = await cartDao.save(baseCart);
 
   res.send({ success: true, cartId: cart.id });
 } catch (error) {
@@ -24,7 +27,7 @@ const CreateCart = async (req, res) => {
 const getById = async (req, res) => {
   const id = req.user.cart;
   try {
-    const cart = await CartDao.getById(id);
+    const cart = await cartDao.getById(id);
     const cartProducts = cart.products;
     console.log(cartProducts)
     if (!cart) {
@@ -43,12 +46,12 @@ const addInCart = async (req, res) => {
   const { productId } = req.params;
   const cartId = req.user.cart;
 
-  const cart = await CartDao.getById(cartId);
+  const cart = await cartDao.getById(cartId);
 
   if (!cart)
     return res.send({ error: true, message: ERRORS_UTILS.MESSAGES.NO_CART });
 
-  const productCard = await ProductDao.getById(productId);
+  const productCard = await productDao.getById(productId);
 
   if (!productCard)
     return res.send({ error: true, message: ERRORS_UTILS.MESSAGES.NO_PRODUCT });
@@ -57,13 +60,13 @@ const addInCart = async (req, res) => {
 
   if (!findProduct){
     cart.products.push({product: productCard, quantity: 1 });
-    await CartDao.updateById(cartId, cart);
+    await cartDao.updateById(cartId, cart);
     return res.redirect("/api/products");
   }
   const productoIndex = cart.products.indexOf(findProduct);
   cart.products[productoIndex].quantity = (cart.products[productoIndex].quantity+1)
   
-  await CartDao.updateById(cartId, cart);
+  await cartDao.updateById(cartId, cart);
   res.redirect("/api/products");
 
 } catch (error) {
@@ -78,7 +81,7 @@ const deleteCartProduct = async (req, res) => {
     const idProduct = req.params;
     const cartId = req.user.cart;
 
-    const cart = await CartDao.getById(cartId);
+    const cart = await cartDao.getById(cartId);
 
     if (!cart) {
       res.send({ error: true, message: ERRORS_UTILS.MESSAGES.NO_CART });
@@ -96,11 +99,11 @@ const deleteCartProduct = async (req, res) => {
 
    if (cart.products[foundElementIndex].quantity === 1){
     cart.products.splice(foundElementIndex, 1);
-    await CartDao.updateById(cartId, cart);
+    await cartDao.updateById(cartId, cart);
     return res.redirect("/api/cart");}
 
     cart.products[foundElementIndex].quantity = (cart.products[foundElementIndex].quantity-1)
-    await CartDao.updateById(cartId, cart);
+    await cartDao.updateById(cartId, cart);
     res.redirect("/api/cart")
   } catch (error) {
     console.log(error, `error from deleteCartProduct`);
@@ -118,7 +121,7 @@ const payCart = async (req, res) => {
 
     const id = req.user.cart;
     const email = req.user.email;
-    const cart = await CartDao.getById(id);
+    const cart = await cartDao.getById(id);
     if (!cart)
       return res.send({ error: true, message: ERRORS_UTILS.MESSAGES.NO_CART });
 
@@ -147,7 +150,7 @@ const payCart = async (req, res) => {
     await EMAIL_UTILS.sendEmail(mailTo, subject, html);
 
     cart.products = [];
-    await CartDao.updateById(id, cart);
+    await cartDao.updateById(id, cart);
 
     res.render("checkout");
   } catch (error) {

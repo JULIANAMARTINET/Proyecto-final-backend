@@ -1,40 +1,53 @@
 import { config } from "../config/index.js";
-import { MongoDBService } from "../services/index.js";
-import { CartsMongo, CartsFilesystem, CartsMemory } from "./Carts/index.js";
-import {
-  ProductsMongo,
-  ProductsFilesystem,
-  ProductsMemory,
-} from "./Products/index.js";
 import { UsersMongo } from "./Users/index.js";
+import { ProductsMongo,ProductsFilesystem,ProductsMemory } from "./Products/index.js";
+import { CartsMongo, CartsFilesystem, CartsMemory } from "./Carts/index.js";
 import { MessagesMongo } from "./Messages/index.js";
 
-const getSelectedDaos = () => {
-  switch (config.SERVER.SELECTED_DATABASE) {
-    case "mongo": {
-      MongoDBService.init();
-      return {
-        ProductDao: new ProductsMongo(),
-        CartDao: new CartsMongo(),
-        UserDao: new UsersMongo(),
-        MessageDao: new MessagesMongo(),
-      };
-    }
-    case "filesystem": {
-      return {
-        ProductDao: new ProductsFilesystem(),
-        CartDao: new CartsFilesystem(),
-      };
-    }
-    case "memory": {
-      return {
-        ProductDao: new ProductsMemory(),
-        CartDao: new CartsMemory(),
-      };
+class DaoFactory {
+  
+  #ProductDao;
+  #CartDao;
+  #UserDao;
+  #MessageDao;
+  constructor() {
+  
+    this.#setSelectedDaos();
+  }
+
+  async #setSelectedDaos() {
+    switch (config.SERVER.SELECTED_DATABASE) {
+      case "mongo": {
+
+          this.#ProductDao = new ProductsMongo(),
+          this.#CartDao = new CartsMongo(),
+          this.#UserDao = new UsersMongo(),
+          this.#MessageDao = new MessagesMongo();
+      }
+      case "filesystem": {
+  
+        this.#ProductDao = new ProductsFilesystem(),
+        this.#CartDao = new CartsFilesystem(),
+        this.#UserDao = new UsersMongo();
+      }
+      case "default": {
+         this.#ProductDao = new ProductsMemory(),
+          this.#CartDao = new CartsMemory(),
+          this.#UserDao = new UsersMongo();
+      }
     }
   }
-};
 
-const { ProductDao, CartDao, UserDao, MessageDao } = getSelectedDaos();
+  getSelectedDao(dao) {
+    const daos = {
+      product: this.#ProductDao,
+      cart: this.#CartDao,
+      users: this.#UserDao,
+      message: this.#MessageDao,
+    };
+    return daos[dao];
+  }
+}
 
-export { ProductDao, CartDao, UserDao, MessageDao };
+export const daoFactory = new DaoFactory();
+
