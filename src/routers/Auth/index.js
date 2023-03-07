@@ -26,8 +26,7 @@ router.get("/github", passport.authenticate("github"), (req, res) => {
   const token = JWT_UTILS.createToken(user, "secret");
 
   res.cookie("tokenCookie", token, { maxAge: 1000 * 60 * 60 });
-
-  // res.send({ user, token });
+  
   res.redirect("/");
 });
 
