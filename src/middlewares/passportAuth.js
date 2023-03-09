@@ -3,6 +3,7 @@ import { Strategy as LocalStrategy } from "passport-local";
 import { Strategy as GithubStrategy } from "passport-github2";
 import { BCRYPT_VALIDATION, } from "../utils/index.js";
 import { daoFactory } from "../Dao/index.js";
+import {Loggers} from "../loggers/loggers.js"
 
 
 const userDao = daoFactory.getSelectedDao("users");
@@ -32,12 +33,12 @@ const init = () => {
           const user = await userDao.getOne({ email: email });
     
           if (!user) {
-            logger.warn(`user not valid user`);
+            Loggers.warn(`user not valid user`);
             return done(null, false)
         }
 
         if (BCRYPT_VALIDATION.isValidPassword(password, user) != true) {
-          logger.warn(`Password not valid pass`);
+          Loggers.warn(`Password not valid pass`);
           return done(null, false)
       }
 

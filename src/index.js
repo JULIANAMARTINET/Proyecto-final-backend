@@ -39,9 +39,9 @@ app.set("view engine", "hbs");
 app.set("views", __dirname + "/views");
 
 PassportAuth.init();
-app.use(cookieParser());
+app.use(cookieParser());  
 
-// app.use(methodOverride("_method"));
+app.use(methodOverride("_method"));
 app.use(
   session({
     secret: "secret",

@@ -7,7 +7,6 @@ import {
   BCRYPT_VALIDATION,
 } from "../../utils/index.js";
 
-
 const userDao = daoFactory.getSelectedDao("users");
 const cartDao = daoFactory.getSelectedDao("cart");
 
@@ -25,6 +24,7 @@ const signUpView = async (req, res) => {
 const signUp = async (req, res) => {
   try {
     const { name, lastname, age, phone, adress, email, password } = req.body;
+    console.log("data", req.body)
     if (
       !name ||
       !lastname ||
@@ -53,7 +53,7 @@ const signUp = async (req, res) => {
     const UserCart = { timestamp: DATE_UTILS.getTimestamp(), products: [] };
     const cart = await cartDao.save(UserCart);
 
-    await userDao.save({
+    const saveUser = await userDao.save({
       name,
       lastname,
       age,
@@ -63,6 +63,7 @@ const signUp = async (req, res) => {
       password: BCRYPT_VALIDATION.hashPassword(password),
       cart: cart.id,
     });
+    console.log("save", saveUser)
 
     let subject = "Nuevo usuario";
     let mailTo = "martinetjuliana@gmail.com";
@@ -81,9 +82,8 @@ const signUp = async (req, res) => {
 
     return res.redirect("login");
   } catch (error) {
-    res.render("/api/auth/signup-error");
+    res.render("err.hbs");
     Loggers.logError(`error from signUp`);
-    res.send({ success: false });
   }
 };
 

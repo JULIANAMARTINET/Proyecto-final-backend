@@ -18,14 +18,12 @@ class DaoFactory {
   async #setSelectedDaos() {
     switch (config.SERVER.SELECTED_DATABASE) {
       case "mongo": {
-
           this.#ProductDao = new ProductsMongo(),
           this.#CartDao = new CartsMongo(),
           this.#UserDao = new UsersMongo(),
           this.#MessageDao = new MessagesMongo();
       }
       case "filesystem": {
-  
         this.#ProductDao = new ProductsFilesystem(),
         this.#CartDao = new CartsFilesystem(),
         this.#UserDao = new UsersMongo();
