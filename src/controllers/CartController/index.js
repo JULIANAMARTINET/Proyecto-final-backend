@@ -1,4 +1,4 @@
-import { daoFactory } from "../../Dao/index.js";
+import { daoFactory } from "../../models/Dao/index.js";
 import { config } from "../../config/index.js";
 import {Loggers} from '../../loggers/loggers.js'
 import {
@@ -7,9 +7,9 @@ import {
   EMAIL_UTILS,
 } from "../../utils/index.js";
 
-
 const cartDao = daoFactory.getSelectedDao("cart");
 const productDao = daoFactory.getSelectedDao("product");
+  
 // /api/carts
 const CreateCart = async (req, res) => {
   try{
@@ -134,7 +134,6 @@ const payCart = async (req, res) => {
             <li>
             ${title} : $${price}
             </li>
-          
             `
       )
       .join("");

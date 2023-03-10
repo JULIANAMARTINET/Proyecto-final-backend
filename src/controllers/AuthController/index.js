@@ -1,14 +1,8 @@
-import { daoFactory } from "../../Dao/index.js";
 import {Loggers} from "../../loggers/loggers.js";
 import {
-  JWT_UTILS,
-  DATE_UTILS,
-  EMAIL_UTILS,
-  BCRYPT_VALIDATION,
+  JWT_UTILS
 } from "../../utils/index.js";
-
-const userDao = daoFactory.getSelectedDao("users");
-const cartDao = daoFactory.getSelectedDao("cart");
+import {userService} from "../../models/Service/index.js"
 
 // HOME
 const home = async (req, res) => {
@@ -23,64 +17,12 @@ const signUpView = async (req, res) => {
 
 const signUp = async (req, res) => {
   try {
-    const { name, lastname, age, phone, adress, email, password } = req.body;
-    console.log("data", req.body)
-    if (
-      !name ||
-      !lastname ||
-      !age ||
-      !phone ||
-      !adress ||
-      !email ||
-      !password
-    ) {
-      return res.send({ success: false });
-    }
+    const newUser = req.body;
+    console.log("user", newUser)
 
-    const existUser = await userDao.getOne({ email });
+    const data = await userService.registerUser(newUser);
 
-    if (existUser && existUser.password) {
-      return res.redirect("/api/auth/signup-error");
-    }
-    if (existUser && !existUser.password) {
-      const updateUser = await userDao.updateById(existUser._id, {
-        ...existUser,
-        password,
-      });
-
-      return res.redirect("login");
-    }
-    const UserCart = { timestamp: DATE_UTILS.getTimestamp(), products: [] };
-    const cart = await cartDao.save(UserCart);
-
-    const saveUser = await userDao.save({
-      name,
-      lastname,
-      age,
-      phone,
-      adress,
-      email,
-      password: BCRYPT_VALIDATION.hashPassword(password),
-      cart: cart.id,
-    });
-    console.log("save", saveUser)
-
-    let subject = "Nuevo usuario";
-    let mailTo = "martinetjuliana@gmail.com";
-    let html = `
-                    <h4>Nuevo registro en Ecommerce!</h4>
-                    <p> Datos:</p>
-                    <ul>
-                    <li> Nombre y apellido: ${name} ${lastname}</li>
-                    <li> Email: ${email}</li>
-                    <li> Teléfono: ${phone}</li>
-                    <li> Edad: ${age}</li>
-                    <li> Direccion: ${adress}</li>
-                    </ul>
-        `;
-    await EMAIL_UTILS.sendEmail(mailTo, subject, html);
-
-    return res.redirect("login");
+    res.redirect("login");
   } catch (error) {
     res.render("err.hbs");
     Loggers.logError(`error from signUp`);

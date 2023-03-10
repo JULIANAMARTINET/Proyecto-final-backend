@@ -3,7 +3,7 @@ import {
   denormalizeMessages,
 } from "../../utils/normalize.js";
 import { Loggers } from "../../loggers/loggers.js";
-import { daoFactory } from "../../Dao/index.js";
+import { daoFactory } from "../../models/Dao/index.js";
 
 const messageDao = daoFactory.getSelectedDao("message");
 
@@ -42,7 +42,6 @@ const addMessage = async (message) => {
     };
   
     const saveResponse = await messageDao.save(objectToStore);
-    console.log("saveresponse",saveResponse)
 
     Loggers.logDebug("--- message save Response ---");
     Loggers.logDebug(saveResponse);

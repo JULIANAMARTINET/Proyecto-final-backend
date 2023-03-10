@@ -1,4 +1,4 @@
-import { daoFactory} from "../Dao/index.js";
+import { daoFactory} from "../models/Dao/index.js";
 import { JWT_UTILS } from "../utils/index.js";
 
 const userDao = daoFactory.getSelectedDao("users");

@@ -1,5 +1,5 @@
-import { MongoDBContainer } from "../../Containers/index.js";
-import { ProductModel } from "../../models/index.js";
+import { MongoDBContainer } from "../../../Containers/index.js";
+import { ProductModel } from "../../index.js";
 
 export class ProductsMongo extends MongoDBContainer {
   constructor() {

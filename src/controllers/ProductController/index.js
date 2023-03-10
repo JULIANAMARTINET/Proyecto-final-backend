@@ -1,4 +1,4 @@
-import { daoFactory } from "../../Dao/index.js";
+import { daoFactory } from "../../models/Dao/index.js";
 import {Loggers} from '../../loggers/loggers.js'
 import {
   DATE_UTILS,
@@ -7,16 +7,17 @@ import {
   LOGGER_UTILS,
 } from "../../utils/index.js";
 
-
 const productDao = daoFactory.getSelectedDao("product");
+
 // /api/products
 const getAll = async (req, res) => {
   try {
     const product = await productDao.getAll();
-
+console.log("productts", product)
     if (!product) {
       return res.send({ error: ERRORS_UTILS.MESSAGES.NO_PRODUCT });
     }
+
     res.render("products-table", { product });
    
   } catch (error) {

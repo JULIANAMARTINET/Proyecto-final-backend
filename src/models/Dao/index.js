@@ -1,6 +1,6 @@
-import { config } from "../config/index.js";
+import { config } from "../../config/index.js";
 import { UsersMongo } from "./Users/index.js";
-import { ProductsMongo,ProductsFilesystem,ProductsMemory } from "./Products/index.js";
+import { ProductsMongo, ProductsFilesystem, ProductsMemory } from "./Products/index.js";
 import { CartsMongo, CartsFilesystem, CartsMemory } from "./Carts/index.js";
 import { MessagesMongo } from "./Messages/index.js";
 
@@ -11,28 +11,31 @@ class DaoFactory {
   #UserDao;
   #MessageDao;
   constructor() {
-  
     this.#setSelectedDaos();
   }
 
   async #setSelectedDaos() {
     switch (config.SERVER.SELECTED_DATABASE) {
       case "mongo": {
-          this.#ProductDao = new ProductsMongo(),
-          this.#CartDao = new CartsMongo(),
-          this.#UserDao = new UsersMongo(),
-          this.#MessageDao = new MessagesMongo();
-      }
-      case "filesystem": {
-        this.#ProductDao = new ProductsFilesystem(),
-        this.#CartDao = new CartsFilesystem(),
-        this.#UserDao = new UsersMongo();
-      }
-      case "default": {
-         this.#ProductDao = new ProductsMemory(),
-          this.#CartDao = new CartsMemory(),
+          this.#ProductDao = new ProductsMongo();
+          this.#CartDao = new CartsMongo();
           this.#UserDao = new UsersMongo();
+          this.#MessageDao = new MessagesMongo();
+          break;
       }
+        case "filesystem": {
+     
+          this.#ProductDao = new ProductsFilesystem();
+          this.#CartDao = new CartsFilesystem();
+          this.#UserDao = new UsersMongo();
+          break;
+        }
+       case "default": {
+          this.#ProductDao = new ProductsMemory();
+           this.#CartDao = new CartsMemory();
+           this.#UserDao = new UsersMongo();
+           break;
+       }
     }
   }
 

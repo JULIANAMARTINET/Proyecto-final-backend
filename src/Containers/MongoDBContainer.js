@@ -10,18 +10,17 @@ class MongoDBContainer {
       const response = await this.model.find();
       return response;
     } catch (error) {
+      console.log("error",error)
       return error;
     }
   }
 
   async save(element) {
     try {
-      console.log("elements", element);
-      console.log("model", this.model);
       const response = await this.model.create(element);
-      console.log("response", response);
       return response;
     } catch (error) {
+      console.log("error",error)
       return error;
     }
   }
@@ -37,9 +36,10 @@ class MongoDBContainer {
 
   async getOne(options) {
     try {
-      const response = await this.model.findOne(options).lean().exec();
+      const response = await this.model.findOne({email: options}).lean().exec();
       return response;
     } catch (error) {
+      console.log("error",error)
       return error;
     }
   }
