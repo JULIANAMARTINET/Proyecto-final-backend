@@ -63,6 +63,14 @@ class MongoDBContainer {
       return error;
     }
   }
+  async delete() {
+    try {
+      const response = await this.model.deleteMany({});
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 export { MongoDBContainer };

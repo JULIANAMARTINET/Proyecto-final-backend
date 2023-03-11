@@ -11,7 +11,6 @@ const cartDao = daoFactory.getSelectedDao("cart");
 
 const registerUser = async (user)=>{
     try {  
-      
       const existUser = await userDao.getOne( user.email );
 
       if (existUser && existUser.password) {

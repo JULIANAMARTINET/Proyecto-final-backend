@@ -122,31 +122,42 @@ const payCart = async (req, res) => {
     const id = req.user.cart;
     const email = req.user.email;
     const cart = await cartDao.getById(id);
+    const productCart = cart.products
+
+    console.log("cartss", productCart)
+    // console.log("prodc", productCart.product)
     if (!cart)
       return res.send({ error: true, message: ERRORS_UTILS.MESSAGES.NO_CART });
 
-    let subject = "Nueva compra ingresada!";
-    let mailTo = config.MAIL.USER;
-    let listado = cart.products
-      .map(
-        ({ title, price }) =>
-          `
-            <li>
-            ${title} : $${price}
-            </li>
-            `
-      )
-      .join("");
+      const order = []
 
-    let html = `
-                        <h3>Pago realizado por el usuario ${email} </h3>
-                        <p> Detalle de compra:</p>
-                        <ul>
-                            ${listado}
-                        </ul>
-                    `;
+       await Promise.all(productCart.map(async e => {
+         order.push({title: e.product.title, cant: e.quantity , price: e.product.price*e.quantity }) }))
 
-    await EMAIL_UTILS.sendEmail(mailTo, subject, html);
+            
+     let subject = "Nueva compra ingresada!";
+     let mailTo = config.MAIL.USER;
+     let total = order.reduce((acumulador, actual) => acumulador + actual.price, 0);
+     let listado = order
+       .map(
+         ({ title, cant, price,  }) =>
+           `<li>
+           ${cant} ${title} : $${price}
+             </li>
+             `
+       )
+       .join("");
+
+     let html = `
+                         <h3>Pago realizado por el usuario ${email} </h3>
+                         <p> Detalle de compra:</p>
+                         <ul>
+                             ${listado}
+                         </ul>
+                         <p>Total $${total}<p>
+
+                     `
+   await EMAIL_UTILS.sendEmail(mailTo, subject, html);
 
     cart.products = [];
     await cartDao.updateById(id, cart);

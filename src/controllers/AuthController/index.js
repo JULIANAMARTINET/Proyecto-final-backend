@@ -3,6 +3,8 @@ import {
   JWT_UTILS
 } from "../../utils/index.js";
 import {userService} from "../../models/Service/index.js"
+import { MessageController } from '../MessageController/index.js'
+
 
 // HOME
 const home = async (req, res) => {
@@ -62,6 +64,8 @@ const logInErr = async (req, res) => {
 // LOGOUT
 
 const logOut = async (req, res) => {
+  await MessageController.deleteMessages()
+
   req.session.destroy();
   res.clearCookie("tokenCookie");
   res.render("logout");
