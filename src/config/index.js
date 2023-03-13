@@ -1,5 +1,13 @@
 import dotenv from "dotenv";
-dotenv.config();
+import path from 'path'
+
+const NODE_ENV = process.env.NODE_ENV
+const configDotenv=path.join(process.cwd() + '/.env')
+
+if(NODE_ENV==='prod')
+    configDotenv.path.join(process.cwd() + '/.env.prod')
+
+dotenv.config(configDotenv);
 
 const PRODUCTS_FILENAME = "products";
 const CARTS_FILENAME = "carts";
