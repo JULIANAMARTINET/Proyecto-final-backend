@@ -32,12 +32,12 @@ const init = () => {
           const user = await userDao.getOne( email );
     
           if (!user) {
-            Loggers.warn(`user not valid user`);
+            Loggers.logWarn(`user not valid user`);
             return done(null, false)
         }
 
         if (BCRYPT_VALIDATION.isValidPassword(password, user) != true) {
-          Loggers.warn(`Password not valid pass`);
+          Loggers.logWarn(`Password not valid pass`);
           return done(null, false)
       }
 

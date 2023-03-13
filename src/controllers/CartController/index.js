@@ -124,8 +124,6 @@ const payCart = async (req, res) => {
     const cart = await cartDao.getById(id);
     const productCart = cart.products
 
-    console.log("cartss", productCart)
-    // console.log("prodc", productCart.product)
     if (!cart)
       return res.send({ error: true, message: ERRORS_UTILS.MESSAGES.NO_CART });
 

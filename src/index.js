@@ -1,10 +1,6 @@
 import express from "express";
 import { config } from "./config/index.js";
-import {
-  ProductRouter,
-  CartRouter,
-  AuthRouter,
-} from "./routers/index.js";
+import router from "./routers/index.js";
 import cors from "cors";
 import methodOverride from "method-override";
 import { PassportAuth } from "./middlewares/index.js";
@@ -57,23 +53,13 @@ const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
 startSockets(io)
 
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({ credentials: true }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-// router 
-app.get('/', (req, res) => {
-  res.render('home')
-})
-
-app.get("/add", (req, res) => {
-  res.render("add-products")})
-
-app.use("/api/auth", AuthRouter);
-app.use("/api/products", ProductRouter);
-app.use("/api/cart", CartRouter);
+app.use(router);;
 
 const server = httpServer.listen(config.SERVER.PORT, () =>
   console.log(`Server running on port ${server.address().port}`)

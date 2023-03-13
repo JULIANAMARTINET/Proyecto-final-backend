@@ -13,7 +13,7 @@ const productDao = daoFactory.getSelectedDao("product");
 const getAll = async (req, res) => {
   try {
     const product = await productDao.getAll();
-console.log("productts", product)
+
     if (!product) {
       return res.send({ error: ERRORS_UTILS.MESSAGES.NO_PRODUCT });
     }
