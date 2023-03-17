@@ -8,9 +8,9 @@ const CartSchema = new Schema(
     products: [
       {
         product: { type: Schema.Types.ObjectId, ref: "products" },
-        quantity: Number
+        quantity: Number,
       },
-    ]
+    ],
   },
   {
     virtuals: true,

@@ -1,11 +1,12 @@
 import {Loggers} from "../../loggers/loggers.js";
+import { daoFactory } from "../../models/Dao/index.js";
 import {
   JWT_UTILS
 } from "../../utils/index.js";
 import {userService} from "../../models/Service/index.js"
 import { MessageController } from '../MessageController/index.js'
 
-
+const UserDao = daoFactory.getSelectedDao("users");
 // HOME
 const home = async (req, res) => {
   const email = req.user.email;
@@ -20,8 +21,6 @@ const signUpView = async (req, res) => {
 const signUp = async (req, res) => {
   try {
     const newUser = req.body;
-    console.log("user", newUser)
-
     const data = await userService.registerUser(newUser);
 
     res.redirect("login");
@@ -61,6 +60,22 @@ const logInErr = async (req, res) => {
   res.render("err-login.hbs");
 };
 
+// PROFILE
+const getById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const profile = await UserDao.getOne(id);
+
+    res.render("profile", { profile });
+  } catch (error) {
+    console.log(error, `error from getAll`);
+    Loggers.logError("error desde el getAll: " + error);
+    res.send({
+      success: false,
+    });
+  }
+};
+
 // LOGOUT
 
 const logOut = async (req, res) => {
@@ -76,6 +91,7 @@ export const AuthController = {
   signUp,
   logIn,
   logOut,
+  getById,
   logInView,
   signUpView,
   signUpErr,

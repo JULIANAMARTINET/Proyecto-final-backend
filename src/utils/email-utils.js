@@ -11,7 +11,6 @@ import { config } from '../config/index.js';
      }
  });
 
-
 const sendEmail = async (mailTo, subject, html) => {
     try {
         const mailOptions = {

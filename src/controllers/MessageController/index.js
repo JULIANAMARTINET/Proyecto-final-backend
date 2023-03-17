@@ -8,7 +8,6 @@ import { daoFactory } from "../../models/Dao/index.js";
 const messageDao = daoFactory.getSelectedDao("message");
 
 const addMessage = async (message) => {
-  console.log("mensaje", message);
   const daoCall = await messageDao.getAll();
   const response = daoCall[0];
   if (response) {
@@ -40,7 +39,6 @@ const addMessage = async (message) => {
       messagesDataId: 1,
       ...normalizedData,
     };
-
     const saveResponse = await messageDao.save(objectToStore);
 
     Loggers.logDebug("--- message save Response ---");
@@ -57,7 +55,6 @@ const getMessages = async () => {
   if (!response) {
     return;
   }
-
   const relevantData = {
     entities: response.entities,
     result: response.result[0],
@@ -71,7 +68,7 @@ const getMessages = async () => {
 
 const deleteMessages = async () => {
   const deleteAll = await messageDao.delete();
-  console.log(deleteAll);
+
   return true;
 };
 export const MessageController = {

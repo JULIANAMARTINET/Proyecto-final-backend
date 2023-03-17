@@ -1,0 +1,31 @@
+<div class="d-flex flex-row justify-content-start w-100 px-5">
+
+  <button class="btn btn btn-primary" onclick="location.href='/inicio'">Volver
+    al Inicio</button>
+
+</div>
+<h3>Datos Personales</h3>
+
+<div class="d-flex flex-column align-items-center">
+
+  <div class="d-flex flex-row flex-wrap justify-content-center m-2">
+
+    <div class="card product m-2">
+      <div class="card-body">
+        <h4 class="card-title text-center border-bottom fs-3">
+          {{profile.name}}
+          {{profile.lastname}}
+        </h4>
+        <div class="d-flex justify-content-between px-4">
+          <div>
+            <p>Email: {{profile.email}} </p>
+            <p>Edad: {{profile.age}} </p>
+            <p>Tel: {{profile.phone}}</p>
+            <p>Direccion: {{profile.adress}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
