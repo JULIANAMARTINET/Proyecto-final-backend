@@ -50,7 +50,7 @@ const logIn = async (req, res) => {
 
     res.render("inicio", { email });
   } catch (error) {
-    res.render("/api/auth/login-error");
+    logInErr()
     Loggers.logError(`error from middlewares/passportAuth - LocalStrategy`, error);
     done(error);
   }

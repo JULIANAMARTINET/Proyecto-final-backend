@@ -49,7 +49,7 @@ const createProduct = async (req, res) => {
     const { title, description, code, thumbnail, price, stock } = req.body;
     // con el validador que creamos en el archivo joi validator, podemos invocar al método validateAsync y pasarle las propiedades que creemos seran nuestro producto, y si están bien, nos devolvera el objeto que guardamos en product
     // si no, saltará al catch
-    const product = await JOI_VALIDATOR.product.validateAsync({
+    const newProduct = await JOI_VALIDATOR.product.validateAsync({
       title,
       description,
       code,
@@ -59,15 +59,16 @@ const createProduct = async (req, res) => {
      timestamp: DATE_UTILS.getTimestamp(), 
     });
 
-    const createdProduct = await productDao.save(product);
-    console.log("newproduct", createdProduct);
-    res.send(createdProduct.id)
-    res.redirect("/api/products");
+    await productDao.save(newProduct);
+    const product = await productDao.getAll();
+
+  res.render("products-table.hbs", { product });
+
   } catch (error) {
     // no seria recomendable guardar logs de errores de input de usuario, que genera joi
     // normalmente guardariamos errores propios e internos del servidor
     await LOGGER_UTILS.addLog(error);
-    res.redirect('/api/products/')
+    res.render('err.hbs')
   }
 };
 

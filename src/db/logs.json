@@ -146,5 +146,142 @@
          "code": "ERR_HTTP_INVALID_STATUS_CODE"
       },
       "id": 6
+   },
+   {
+      "timestamp": "3/16/2023 11:24:20 AM",
+      "message": {
+         "code": "ERR_HTTP_HEADERS_SENT"
+      },
+      "id": 7
+   },
+   {
+      "timestamp": "3/16/2023 11:29:09 AM",
+      "message": {},
+      "id": 8
+   },
+   {
+      "timestamp": "3/16/2023 11:31:14 AM",
+      "message": {},
+      "id": 9
+   },
+   {
+      "timestamp": "3/16/2023 11:41:22 AM",
+      "message": {
+         "_original": {
+            "title": "ddd",
+            "description": "eee",
+            "code": "44",
+            "thumbnail": "eeee",
+            "price": "4",
+            "stock": "44",
+            "timestamp": "3/16/2023 11:41:22 AM"
+         },
+         "details": [
+            {
+               "message": "\"code\" length must be at least 3 characters long",
+               "path": [
+                  "code"
+               ],
+               "type": "string.min",
+               "context": {
+                  "limit": 3,
+                  "value": "44",
+                  "label": "code",
+                  "key": "code"
+               }
+            }
+         ]
+      },
+      "id": 10
+   },
+   {
+      "timestamp": "3/16/2023 11:42:40 AM",
+      "message": {
+         "_original": {
+            "title": "ddd",
+            "description": "eee",
+            "code": "44",
+            "thumbnail": "eeee",
+            "price": "4",
+            "stock": "44",
+            "timestamp": "3/16/2023 11:42:40 AM"
+         },
+         "details": [
+            {
+               "message": "\"code\" length must be at least 3 characters long",
+               "path": [
+                  "code"
+               ],
+               "type": "string.min",
+               "context": {
+                  "limit": 3,
+                  "value": "44",
+                  "label": "code",
+                  "key": "code"
+               }
+            }
+         ]
+      },
+      "id": 11
+   },
+   {
+      "timestamp": "3/16/2023 11:42:41 AM",
+      "message": {
+         "_original": {
+            "title": "ddd",
+            "description": "eee",
+            "code": "44",
+            "thumbnail": "eeee",
+            "price": "4",
+            "stock": "44",
+            "timestamp": "3/16/2023 11:42:41 AM"
+         },
+         "details": [
+            {
+               "message": "\"code\" length must be at least 3 characters long",
+               "path": [
+                  "code"
+               ],
+               "type": "string.min",
+               "context": {
+                  "limit": 3,
+                  "value": "44",
+                  "label": "code",
+                  "key": "code"
+               }
+            }
+         ]
+      },
+      "id": 12
+   },
+   {
+      "timestamp": "3/16/2023 8:56:11 PM",
+      "message": {
+         "_original": {
+            "title": "fff",
+            "description": "fff",
+            "code": "44",
+            "thumbnail": "fff",
+            "price": "44",
+            "stock": "r",
+            "timestamp": "3/16/2023 8:56:11 PM"
+         },
+         "details": [
+            {
+               "message": "\"code\" length must be at least 3 characters long",
+               "path": [
+                  "code"
+               ],
+               "type": "string.min",
+               "context": {
+                  "limit": 3,
+                  "value": "44",
+                  "label": "code",
+                  "key": "code"
+               }
+            }
+         ]
+      },
+      "id": 13
    }
 ]

@@ -4,7 +4,6 @@ import { AuthController } from "../../controllers/index.js";
 
 const viewRouter = Router();
 
-
 viewRouter.get('/', (req, res) => {
     res.render('home')
   })
@@ -15,6 +14,7 @@ viewRouter.get('/', (req, res) => {
     // LOGIN
     viewRouter.get('/inicio',isValidAuthToken, AuthController.home)
     viewRouter.get('/login', AuthController.logInView)
+    viewRouter.get("/login-error", AuthController.logInErr)
     // SIGNUP
     viewRouter.get('/signup', AuthController.signUpView)
  // LOGOUT
