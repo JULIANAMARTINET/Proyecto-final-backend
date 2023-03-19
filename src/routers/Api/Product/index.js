@@ -7,9 +7,10 @@ const router = Router();
 
 // /api/products
 
-router.get("/",isValidAuthToken, ProductController.getAll);
-router.get("/:id", ProductController.getById);
+router.get("/",isValidAuthToken, ProductController.getAll({isApi: true}));
+router.get("/:id", ProductController.getById({isApi: true}));
 router.post("/", verifyRole, ProductController.createProduct);
+router.put("/:id", ProductController.updateProduct);
 router.delete("/:id", ProductController.deleteById);
 
 

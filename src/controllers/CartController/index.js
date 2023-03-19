@@ -1,7 +1,11 @@
 import { daoFactory } from "../../models/Dao/index.js";
-import { config } from "../../config/index.js";
 import { Loggers } from "../../loggers/loggers.js";
-import { DATE_UTILS, ERRORS_UTILS, EMAIL_UTILS } from "../../utils/index.js";
+import {
+  DATE_UTILS,
+  ERRORS_UTILS,
+  EMAIL_UTILS,
+  TEMPLATE,
+} from "../../utils/index.js";
 
 const cartDao = daoFactory.getSelectedDao("cart");
 const productDao = daoFactory.getSelectedDao("product");
@@ -18,32 +22,35 @@ const CreateCart = async (req, res) => {
     Loggers.logError("error desde el CreateCart");
     res.send({
       success: false,
-      data: undefined,
       message: ERRORS_UTILS.MESSAGES.NO_CART,
     });
   }
 };
 
-const getById = async (req, res) => {
-  const id = req.user.cart;
-  try {
-    const cart = await cartDao.getById(id);
-    const cartProducts = cart.products;
+const getById =
+  ({ isApi }) =>
+  async (req, res) => {
+    const id = req.user.cart;
+    console.log("id", id);
+    try {
+      const cart = await cartDao.getById(id);
+      const cartProducts = cart.products;
 
-    if (!cart) {
-      return res.send({ error: ERRORS_UTILS.MESSAGES.NO_PRODUCT });
+      if (!cart) {
+        return res.send({ error: ERRORS_UTILS.MESSAGES.NO_PRODUCT });
+      }
+      isApi
+        ? res.send({ cartProducts })
+        : res.render("carts", { cartProducts });
+    } catch (error) {
+      console.log(error, `error from getById`);
+      Loggers.logError("error desde el getById");
+      res.send({
+        success: false,
+        message: ERRORS_UTILS.MESSAGES.NO_CART,
+      });
     }
-    res.render("carts", { cartProducts });
-  } catch (error) {
-    console.log(error, `error from getById`);
-    Loggers.logError("error desde el getById");
-    res.send({
-      success: false,
-      data: undefined,
-      message: ERRORS_UTILS.MESSAGES.NO_CART,
-    });
-  }
-};
+  };
 
 const addInCart = async (req, res) => {
   try {
@@ -70,20 +77,19 @@ const addInCart = async (req, res) => {
     if (!findProduct) {
       cart.products.push({ product: productCard, quantity: 1 });
       await cartDao.updateById(cartId, cart);
-      return res.redirect("/api/products");
+      return res.redirect("/productos");
     }
     const productoIndex = cart.products.indexOf(findProduct);
     cart.products[productoIndex].quantity =
       cart.products[productoIndex].quantity + 1;
 
     await cartDao.updateById(cartId, cart);
-    res.redirect("/api/products");
+    res.redirect("/productos");
   } catch (error) {
     console.log(error, `error from addInCart`);
     Loggers.logError("error desde el addInCart");
     res.send({
       success: false,
-      data: undefined,
       message: ERRORS_UTILS.MESSAGES.NO_CART,
     });
   }
@@ -113,87 +119,80 @@ const deleteCartProduct = async (req, res) => {
     if (cart.products[foundElementIndex].quantity === 1) {
       cart.products.splice(foundElementIndex, 1);
       await cartDao.updateById(cartId, cart);
-      return res.redirect("/api/cart");
+      return res.redirect("/carrito");
     }
 
     cart.products[foundElementIndex].quantity =
       cart.products[foundElementIndex].quantity - 1;
     await cartDao.updateById(cartId, cart);
-    res.redirect("/api/cart");
+    res.redirect("/carrito");
   } catch (error) {
     console.log(error, `error from deleteCartProduct`);
     Loggers.logError("error desde el deleteCartProduct");
     res.send({
       success: false,
-      data: undefined,
       message: ERRORS_UTILS.MESSAGES.NO_CART,
     });
   }
 };
 
-const payCart = async (req, res) => {
-  try {
-    const id = req.user.cart;
-    const email = req.user.email;
-    const cart = await cartDao.getById(id);
-    const productCart = cart.products;
+const payCart =
+  ({ isApi }) =>
+  async (req, res) => {
+    try {
+      const id = req.user.cart;
+      const email = req.user.email;
+      const cart = await cartDao.getById(id);
+      const productCart = cart.products;
 
-    if (!cart)
-      return res.send({ error: true, message: ERRORS_UTILS.MESSAGES.NO_CART });
+      if (!cart)
+        return res.send({
+          error: true,
+          message: ERRORS_UTILS.MESSAGES.NO_CART,
+        });
 
-    const order = [];
+      const order = [];
 
-    await Promise.all(
       productCart.map(async (e) => {
         order.push({
           title: e.product.title,
           cant: e.quantity,
           price: e.product.price * e.quantity,
         });
-      })
-    );
+      });
 
-    let subject = "Nueva compra ingresada!";
-    let mailTo = config.MAIL.USER;
-    let total = order.reduce(
-      (acumulador, actual) => acumulador + actual.price,
-      0
-    );
-    let listado = order
-      .map(
-        ({ title, cant, price }) =>
-          `<li>
+      let subject = "Nueva compra ingresada!";
+      let mailTo = email;
+      let total = order.reduce(
+        (acumulador, actual) => acumulador + actual.price,
+        0
+      );
+      let listado = order
+        .map(
+          ({ title, cant, price }) =>
+            `<li>
            ${cant} ${title} : $${price}
              </li>
              `
-      )
-      .join("");
+        )
+        .join("");
 
-    let html = `
-                         <h3>Pago realizado por el usuario ${email} </h3>
-                         <p> Detalle de compra:</p>
-                         <ul>
-                             ${listado}
-                         </ul>
-                         <p>Total $${total}<p>
+      let html = TEMPLATE.getPurchaseTemplate(email, listado, total);
+      await EMAIL_UTILS.sendEmail(mailTo, subject, html);
 
-                     `;
-    await EMAIL_UTILS.sendEmail(mailTo, subject, html);
+      cart.products = [];
+      await cartDao.updateById(id, cart);
 
-    cart.products = [];
-    await cartDao.updateById(id, cart);
-
-    res.render("checkout");
-  } catch (error) {
-    console.log(error, `error from payCart`);
-    Loggers.logError("error desde el payCart");
-    res.send({
-      success: false,
-      data: undefined,
-      message: ERRORS_UTILS.MESSAGES.NO_CART,
-    });
-  }
-};
+      isApi ? res.send({ success: true }) : res.render("checkout");
+    } catch (error) {
+      console.log(error, `error from payCart`);
+      Loggers.logError("error desde el payCart");
+      res.send({
+        success: false,
+        message: ERRORS_UTILS.MESSAGES.NO_CART,
+      });
+    }
+  };
 
 export const CartController = {
   CreateCart,

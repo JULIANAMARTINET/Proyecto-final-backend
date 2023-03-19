@@ -283,5 +283,336 @@
          ]
       },
       "id": 13
+   },
+   {
+      "timestamp": "3/19/2023 5:28:57 PM",
+      "message": {
+         "_original": {
+            "description": "KSKSKS",
+            "code": "929292",
+            "thumbnail": "SSKSKS",
+            "price": [
+               "92929",
+               "2"
+            ]
+         },
+         "details": [
+            {
+               "message": "\"title\" is required",
+               "path": [
+                  "title"
+               ],
+               "type": "any.required",
+               "context": {
+                  "label": "title",
+                  "key": "title"
+               }
+            }
+         ]
+      },
+      "id": 14
+   },
+   {
+      "timestamp": "3/19/2023 5:30:04 PM",
+      "message": {
+         "_original": {
+            "description": "sssss",
+            "code": "33",
+            "thumbnail": "ssssss",
+            "price": [
+               "33",
+               "22"
+            ]
+         },
+         "details": [
+            {
+               "message": "\"title\" is required",
+               "path": [
+                  "title"
+               ],
+               "type": "any.required",
+               "context": {
+                  "label": "title",
+                  "key": "title"
+               }
+            }
+         ]
+      },
+      "id": 15
+   },
+   {
+      "timestamp": "3/19/2023 5:32:35 PM",
+      "message": {
+         "_original": {
+            "description": "ssssss",
+            "code": "332",
+            "thumbnail": "sssssss",
+            "price": [
+               "332",
+               "22"
+            ]
+         },
+         "details": [
+            {
+               "message": "\"title\" is required",
+               "path": [
+                  "title"
+               ],
+               "type": "any.required",
+               "context": {
+                  "label": "title",
+                  "key": "title"
+               }
+            }
+         ]
+      },
+      "id": 16
+   },
+   {
+      "timestamp": "3/19/2023 5:33:24 PM",
+      "message": {
+         "_original": {
+            "description": "sss",
+            "code": "22",
+            "thumbnail": "sssss",
+            "price": [
+               "222",
+               "2"
+            ]
+         },
+         "details": [
+            {
+               "message": "\"title\" is required",
+               "path": [
+                  "title"
+               ],
+               "type": "any.required",
+               "context": {
+                  "label": "title",
+                  "key": "title"
+               }
+            }
+         ]
+      },
+      "id": 17
+   },
+   {
+      "timestamp": "3/19/2023 5:35:00 PM",
+      "message": {
+         "_original": {
+            "description": "ssss",
+            "code": "33",
+            "thumbnail": "sssss",
+            "price": "222",
+            "stock": "22"
+         },
+         "details": [
+            {
+               "message": "\"title\" is required",
+               "path": [
+                  "title"
+               ],
+               "type": "any.required",
+               "context": {
+                  "label": "title",
+                  "key": "title"
+               }
+            }
+         ]
+      },
+      "id": 18
+   },
+   {
+      "timestamp": "3/19/2023 5:35:44 PM",
+      "message": {
+         "_original": {
+            "title": "sss",
+            "description": "sss",
+            "code": "333",
+            "thumbnail": "ssss",
+            "price": "333",
+            "stock": "3"
+         },
+         "details": [
+            {
+               "message": "\"timestamp\" is required",
+               "path": [
+                  "timestamp"
+               ],
+               "type": "any.required",
+               "context": {
+                  "label": "timestamp",
+                  "key": "timestamp"
+               }
+            }
+         ]
+      },
+      "id": 19
+   },
+   {
+      "timestamp": "3/19/2023 5:51:40 PM",
+      "message": {
+         "code": "ERR_HTTP_INVALID_STATUS_CODE"
+      },
+      "id": 20
+   },
+   {
+      "timestamp": "3/19/2023 5:53:10 PM",
+      "message": {
+         "code": "ERR_HTTP_INVALID_STATUS_CODE"
+      },
+      "id": 21
+   },
+   {
+      "timestamp": "3/19/2023 5:53:46 PM",
+      "message": {
+         "code": "ERR_HTTP_INVALID_STATUS_CODE"
+      },
+      "id": 22
+   },
+   {
+      "timestamp": "3/19/2023 5:56:12 PM",
+      "message": {
+         "_original": {
+            "title": "",
+            "description": "gdghdhg",
+            "code": "676575",
+            "thumbnail": "hfxhs",
+            "price": "54",
+            "stock": "1",
+            "timestamp": "3/19/2023 5:56:12 PM"
+         },
+         "details": [
+            {
+               "message": "\"title\" is not allowed to be empty",
+               "path": [
+                  "title"
+               ],
+               "type": "string.empty",
+               "context": {
+                  "label": "title",
+                  "value": "",
+                  "key": "title"
+               }
+            }
+         ]
+      },
+      "id": 23
+   },
+   {
+      "timestamp": "3/19/2023 5:56:49 PM",
+      "message": {
+         "_original": {
+            "title": "",
+            "description": "dgsdgdg",
+            "code": "22",
+            "thumbnail": "dgsdg",
+            "price": "55",
+            "stock": "55",
+            "timestamp": "3/19/2023 5:56:49 PM"
+         },
+         "details": [
+            {
+               "message": "\"title\" is not allowed to be empty",
+               "path": [
+                  "title"
+               ],
+               "type": "string.empty",
+               "context": {
+                  "label": "title",
+                  "value": "",
+                  "key": "title"
+               }
+            }
+         ]
+      },
+      "id": 24
+   },
+   {
+      "timestamp": "3/19/2023 5:57:52 PM",
+      "message": {
+         "_original": {
+            "title": "",
+            "description": "sdgsdg",
+            "code": "4444",
+            "thumbnail": "dfsdfs",
+            "price": "444",
+            "stock": "44",
+            "timestamp": "3/19/2023 5:57:52 PM"
+         },
+         "details": [
+            {
+               "message": "\"title\" is not allowed to be empty",
+               "path": [
+                  "title"
+               ],
+               "type": "string.empty",
+               "context": {
+                  "label": "title",
+                  "value": "",
+                  "key": "title"
+               }
+            }
+         ]
+      },
+      "id": 25
+   },
+   {
+      "timestamp": "3/19/2023 6:12:31 PM",
+      "message": {
+         "_original": {
+            "title": "dfdsf",
+            "description": "sdfdsf",
+            "code": "sxfds",
+            "thumbnail": "dsfsdf",
+            "price": "dsfsdf",
+            "stock": "sdfsdf",
+            "timestamp": "3/19/2023 6:12:31 PM"
+         },
+         "details": [
+            {
+               "message": "\"price\" must be a number",
+               "path": [
+                  "price"
+               ],
+               "type": "number.base",
+               "context": {
+                  "label": "price",
+                  "value": "dsfsdf",
+                  "key": "price"
+               }
+            }
+         ]
+      },
+      "id": 26
+   },
+   {
+      "timestamp": "3/19/2023 6:13:20 PM",
+      "message": {
+         "_original": {
+            "title": "dfdsf",
+            "description": "sdfdsf",
+            "code": "sxfds",
+            "thumbnail": "dsfsdf",
+            "price": "dsfsdf",
+            "stock": "sdfsdf",
+            "timestamp": "3/19/2023 6:13:20 PM"
+         },
+         "details": [
+            {
+               "message": "\"price\" must be a number",
+               "path": [
+                  "price"
+               ],
+               "type": "number.base",
+               "context": {
+                  "label": "price",
+                  "value": "dsfsdf",
+                  "key": "price"
+               }
+            }
+         ]
+      },
+      "id": 27
    }
 ]

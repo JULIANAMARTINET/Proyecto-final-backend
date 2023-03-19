@@ -7,11 +7,7 @@ const isValidAuthToken = async (req, res, next) => {
   try {
     const { tokenCookie } = req.cookies;
 
-    if (!tokenCookie) {
-      throw new Error("Unauthorized");
-    }
-
-    const verifiedToken = JWT_UTILS.verifyToken(tokenCookie, "secret");
+    const verifiedToken = tokenCookie && JWT_UTILS.verifyToken(tokenCookie, "secret");
 
     if (!verifiedToken) {
       throw new Error("Unauthorized");

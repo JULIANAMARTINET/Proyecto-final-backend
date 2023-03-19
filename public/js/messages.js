@@ -54,22 +54,16 @@ const renderMessages = (data) => {
 
 const addMessage = (m) => {
     const text = document.getElementById('text').value
-    // const name = document.getElementById('name').value
-    // const surname = document.getElementById('surname').value
     const email = document.getElementById('email').value
-    // const alias = document.getElementById('alias').value
+
 
     const message = {
         author: {
-            // name,
-            // surname,
             email
-            // alias
         },
         text,
         date: new Date()
     }
-    console.log(message);
     socket.emit('new-message', message)
     return false
 }

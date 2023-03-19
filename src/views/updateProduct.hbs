@@ -1,0 +1,88 @@
+<div class="d-flex flex-column align-items-center">
+
+  <div class="d-flex flex-row flex-wrap justify-content-center m-2">
+
+    <div class="card product m-2">
+      <div class="card-body">
+        <form
+          action="/api/products/{{product._id}}?_method=PUT"
+          method="POST"
+          class="d-flex flex-column items-center"
+        >
+          <div
+            class="mb-3 d-flex flex-column items-center justify-content-center"
+          >
+            <h5 class="text-center" for="code">NOMBRE DEL PRODUCTO</h5>
+            <textarea
+              name="title"
+              placeholder="modificar o copiar el actual"
+              class="text-center"
+            ></textarea>
+            <p>Actual: {{product.title}}</p>
+          </div>
+          <div
+            class="mb-3 d-flex flex-column items-center justify-content-center"
+          >
+            <h5 class="text-center" for="code">Código</h5>
+            <textarea
+              name="code"
+              placeholder="modificar o copiar el actual"
+              class="text-center"
+            ></textarea>
+            <p>Actual: {{product.code}}</p>
+          </div>
+          <div
+            class="mb-3 d-flex flex-column items-center justify-content-center"
+          >
+            <h5 class="text-center" for="thumbnail">Imagen</h5>
+            <textarea
+              name="thumbnail"
+              placeholder="modificar o copiar el actual"
+              class="text-center"
+            ></textarea>
+            <p>Actual: {{product.thumbnail}}</p>
+          </div>
+          <div
+            class="mb-3 d-flex flex-column items-center justify-content-center"
+          >
+            <h5 class="text-center" for="description">Descripción</h5>
+            <textarea
+              name="description"
+              placeholder="modificar o copiar el actual"
+              class="text-center"
+            ></textarea>
+            <p>Actual: {{product.description}}</p>
+          </div>
+          <div
+            class="mb-3 d-flex flex-column items-center justify-content-center"
+          >
+            <h5 class="text-center" for="price">Precio</h5>
+            <textarea
+              name="price"
+              placeholder="modificar o copiar el actual"
+              class="text-center"
+            ></textarea>
+            <p>Actual: {{product.price}}</p>
+          </div>
+          <div
+            class="mb-3 d-flex flex-column items-center justify-content-center"
+          >
+            <h5 for="stock" class="text-center">stock:</h5>
+            <textarea
+              name="stock"
+              placeholder="modificar o copiar el actual"
+              class="text-center"
+            ></textarea>
+            <p>Actual: {{product.stock}}</p>
+          </div>
+          <button
+            class="btn btn-primary btn-block btn-sm"
+            type="submit"
+          >Actualizar
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
