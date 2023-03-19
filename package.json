@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
-    "prod": "nodemon src/index.js",
+    "dev": "src/index.js",
+    "prod": "src/index.js",
     "test": "mocha src/test/test.js"
   },
   "keywords": [],
