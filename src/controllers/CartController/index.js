@@ -177,7 +177,8 @@ const payCart =
         )
         .join("");
 
-      let html = TEMPLATE.getPurchaseTemplate(email, listado, total);
+      const html = TEMPLATE.getPurchaseTemplate(email, listado, total);
+     
       await EMAIL_UTILS.sendEmail(mailTo, subject, html);
 
       cart.products = [];
