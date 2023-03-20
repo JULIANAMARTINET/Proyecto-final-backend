@@ -1,6 +1,0 @@
-{
-  "ignore": ["/*.json"],
-  "events": {
-    "start": "cls"
-  }
-}
